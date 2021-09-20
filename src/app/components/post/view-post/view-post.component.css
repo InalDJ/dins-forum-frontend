@@ -1,0 +1,63 @@
+.post-title {
+  font-size: 28px;
+  font-weight: bold;
+  opacity: 1;
+}
+
+.post-title:hover {
+  opacity: 0.6;
+}
+
+.topic-text {
+  font-weight: bold;
+}
+
+.post-text {
+  font-weight: bold;
+}
+
+.post-url {
+  color: black;
+}
+
+.comment-url {
+  color: black;
+}
+
+.username{
+  color: gray;
+}
+
+.post-text{
+  margin-top: 10px;
+}
+
+.post{
+  --post-line-color: #ccc;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background-color: rgba(255,255,255,0.8);
+  color: #878A8C;
+  position: relative;
+  border-radius: 4px;
+  padding:5px;
+}
+
+.comment .sub-comment{
+  --post-line-color: #ccc;
+  border: none;
+  margin-bottom: 10px;
+  overflow: hidden;
+  word-wrap: break-word;
+  background-color: rgba(255,255,255,0.8);
+  color: #878A8C;
+  position: relative;
+  border-radius: 4px;
+  padding:5px;
+}
+
+.comment-text{
+  white-space: initial;
+}

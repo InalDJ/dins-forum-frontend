@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="row">
+    <hr/>
+    <div class="col-9">
+      <div class="row post">
+        <div class="col-md-1">
+          <app-vote-button [post]="post"></app-vote-button>
+        </div>
+        <div class="col-md-11">
+          <span>
+            <span class="topic-text"><a class="post-url" href="">{{post.topicName}}</a></span>
+            <span> . Posted
+              <span> {{post.duration}} </span>
+              by
+              <a class="username" href="">{{post.userName}}</a>
+            </span>
+          </span>
+          <hr/>
+          <a routerLink="post.url" class="post-title">{{post.postName}}</a>
+          <div>
+            <p class="post-text" [innerHtml]="post.description"></p>
+          </div>
+          <div class="post-comment">
+            <form [formGroup]="commentForm" (ngSubmit)="postComment()">
+              <div class="form-group">
+                <textarea class="form-control" [formControlName]="'text'" placeholder="Your Thoughts?"></textarea>
+              </div>
+              <button type="submit" class="login float-right">Comment</button>
+            </form>
+          </div>
+          <div style="margin-top: 10px;" class="row comment align-items-center" *ngFor="let comment of comments; let i = index">
+            <div class="col-1">
+              <img style="width: 110%;" class="rounded-circle" src="./assets/photo.jpeg">
+            </div>
+            <div class="col-11">
+              <div class="row">
+                <div class="col-11 md-1">
+                    <span>
+                      <span>
+                        <a class="comment-url" href="">{{comment.userName}}</a>
+                      </span>
+                      <span>
+                        &#183; <span style="font-size: small"> {{comment.duration}} </span>
+                      </span>
+                    </span>
+                  <div class="comment-text">
+                    <span>{{comment.text}}</span>
+                  </div>
+                </div>
+                <hr/>
+              </div>
+              <div class="row">
+                <div class="col-12" >
+                  <app-comment-vote-button [comment]="comment"></app-comment-vote-button>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 offset-1">
+                <a *ngIf="comment.subCommentsHidden && comment.subCommentCount != 0" [attr.aria-expanded]="!comment.subCommentsHidden" (click)="setCollapse(comment.id); getCommentsForPostByParentComment(comment.id)" role="button" style="font-weight: bold; color: blue;" aria-controls="collapseExample">
+                  <fa-icon [icon]="faCaretDown">
+                  </fa-icon>
+                  Show replies</a>
+
+                <a *ngIf="!comment.subCommentsHidden && comment.subCommentCount != 0" (click)="setCollapse(comment.id)" [attr.aria-expanded]="!comment.subCommentsHidden" role="button" style="font-weight: bold; color: blue;" aria-controls="collapseExample">
+                  <fa-icon [icon]="faCaretUp">
+                  </fa-icon>
+                  Hide replies</a>
+              </div>
+            </div>
+
+            <!-- Sub Comment Section -->
+            <div class="row" #collapse="ngbCollapse" [(ngbCollapse)]="comment.subCommentsHidden">
+              <div *ngFor="let subComment of subComments; let z = index">
+                <div *ngIf="comment.id == subComment.parentCommentId" style="margin-top: 10px;" class="row sub-comment align-items-center">
+                  <div class="col-1 offset-1">
+                    <img style="width: 110%;" class="rounded-circle" src="./assets/photo.jpeg">
+                  </div>
+                  <div class="col-10">
+                    <div class="row">
+                      <div class="col-11 md-1">
+                    <span>
+                      <span>
+                        <a class="comment-url" href="">{{subComment.userName}}</a>
+                      </span>
+                      <span>
+                        . <span style="font-size: small">{{subComment.duration}}</span>
+                      </span>
+                    </span>
+                        <div class="comment-text">
+                          <span>{{subComment.text}}</span>
+                        </div>
+                      </div>
+                      <hr/>
+                    </div>
+                    <div class="row">
+                      <div class="col-12" >
+                        <app-comment-vote-button [comment]="comment"></app-comment-vote-button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Sub Comment Section end -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <app-sidebar></app-sidebar>
+      <app-topic-sidebar></app-topic-sidebar>
+    </div>
+  </div>
+</div>
