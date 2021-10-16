@@ -3,6 +3,23 @@
     <div class="row">
       <hr />
       <div class="col-md-9">
+        <div class="row switch-section">
+          <div class="col-12">
+            <div class="p-1" style="float: left;">
+              <input value="new" type="radio" class="btn-check" name="options" id="new" autocomplete="off" checked (click)="changeOrderType($any($event.target).value)">
+              <label class="btn btn-outline-primary" for="new"><fa-icon [icon]="faNew"></fa-icon> New</label>
+            </div>
+            <div class="p-1" style="float: left">
+              <input value="popular" type="radio" class="btn-check p-2" name="options" id="popular" autocomplete="off" (click)="changeOrderType($any($event.target).value)">
+              <label class="btn btn-outline-danger" for="popular"><fa-icon [icon]="faPopular"></fa-icon> Popular</label>
+            </div>
+            <div class="p-1" style="float: left">
+              <input type="radio" class="btn-check py-1" name="options" id="top" autocomplete="off" (click)="changeOrderType($any($event.target).value)">
+              <label class="btn btn-outline-dark" for="top"><fa-icon [icon]="faTop"></fa-icon> Top</label>
+            </div>
+          </div>
+
+        </div>
         <app-post-tile [posts]="posts"></app-post-tile>
       </div>
       <div class="col-md-3">
@@ -12,3 +29,29 @@
     </div>
   </div>
 </div>
+
+  <div class="row">
+    <div class="col-9" style="padding-left: 30%">
+      <ngb-pagination
+        [collectionSize]="numberOfElementsTotal"
+        [pageSize]="numberOfElementsPerPage"
+        [(page)]="pageNumber"
+        (pageChange)="getAllPosts()"
+        [maxSize]="maxNumberOfPagesVisible"
+        [boundaryLinks]="true"
+      ></ngb-pagination>
+    </div>
+    <div class="col-3 mt-2">
+      <span >Page Size </span>
+      <select (change)="updatePageSize($any($event.target).value)">
+        <option selected="true">5</option>
+        <option>10</option>
+        <option>20</option>
+        <option>50</option>
+        <option>100</option>
+      </select>
+    </div>
+  </div>
+
+
+

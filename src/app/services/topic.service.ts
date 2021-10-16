@@ -3,13 +3,14 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {LocalStorageService} from "ngx-webstorage";
 import {TopicModel} from "../model/topic-model";
+import {TopicResponse} from "../model/topic-response";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TopicService {
 
-  topicUrl = 'http://localhost:8080/api/topics/newest';
+  topicUrl = 'http://localhost:8080/api/topics';
   searchpostUrl = 'http://185.244.27.156:8080/api/posts/search';
   searchpostsByAuthorUrl = 'http://185.244.27.156:8080/api/posts/searchByAuthor';
   searchpostsByTagUrl = 'http://185.244.27.156:8080/api/posts/searchByTag';
@@ -19,8 +20,14 @@ export class TopicService {
 
   constructor(private http: HttpClient, private localStorage: LocalStorageService) { }
 
-  getAllTopics() :Observable<any>{
-    return this.http.get<any>(this.topicUrl);
+  getAllTopics(orderType: string, pageNumber: number, topicsPerPage: number) :Observable<TopicResponse>{
+    return this.http.get<TopicResponse>(this.topicUrl, {
+      params: {
+        orderType: orderType,
+        pageNumber: pageNumber,
+        topicsPerPage: topicsPerPage
+      }
+    });
   }
 
   getRecommendedPosts(id: number) :Observable<any>{

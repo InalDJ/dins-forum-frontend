@@ -1,14 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PostModel} from "../../model/post-model";
-import {VotePayload} from "../../model/vote-payload";
-import {VoteService} from "../../services/vote.service";
-import {AuthService} from "../../services/auth.service";
-import {PostService} from "../../services/post.service";
+import {PostModel} from "../../../model/post-model";
+import {VotePayload} from "../../../model/vote-payload";
+import {VoteService} from "../../../services/vote.service";
+import {AuthService} from "../../../services/auth.service";
+import {PostService} from "../../../services/post.service";
 import {ToastrService} from "ngx-toastr";
-import {VoteType} from "../../model/vote-type";
+import {VoteType} from "../../../model/vote-type";
 import {throwError} from "rxjs";
 import {faArrowDown, faArrowUp} from '@fortawesome/free-solid-svg-icons';
-import {VoteCategory} from "../../model/vote-category";
+import {VoteCategory} from "../../../model/vote-category";
+import {CommentPayload} from "../../../model/comment-payload";
 
 @Component({
   selector: 'app-vote-button',
@@ -56,9 +57,10 @@ export class VoteButtonComponent implements OnInit {
   private vote() {
     this.votePayload.postId = this.post.id;
     this.voteService.vote(this.votePayload).subscribe(() => {
+      this.toastr.success("Success")
       this.updateVoteDetails();
     }, error => {
-      this.toastr.error(error.error.message);
+      this.toastr.error('Failed');
       throwError(error);
     });
   }

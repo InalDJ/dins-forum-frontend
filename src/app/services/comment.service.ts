@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {CommentPayload} from "../model/comment-payload";
+import {CommentResponse} from "../model/comment-response";
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,11 @@ export class CommentService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllCommentsForPost(postId: number): Observable<CommentPayload[]> {
-    return this.httpClient.get<CommentPayload[]>('http://localhost:8080/api/comments/post/' + postId);
+  getAllCommentsForPost(postId: number, pageNumber: number, commentQuantity: number): Observable<CommentResponse> {
+    return this.httpClient.get<CommentResponse>('http://localhost:8080/api/comments/post/' + postId + '?pageNumber=' + pageNumber + '&commentQuantity=' + commentQuantity);
   }
 
-  getAllCommentsForPostByParentComment(postId: number, parentCommentId:number): Observable<CommentPayload[]> {
+  getSubCommentsByPostANdParentComment(postId: number, parentCommentId:number): Observable<CommentPayload[]> {
     return this.httpClient.get<CommentPayload[]>('http://localhost:8080/api/comments/post/' + postId + '/comment/' + parentCommentId);
   }
 
@@ -22,8 +23,8 @@ export class CommentService {
     return this.httpClient.get<CommentPayload>('http://localhost:8080/api/comments/' + commentId);
   }
 
-  postComment(commentPayload: CommentPayload): Observable<any> {
-    return this.httpClient.post<any>('http://localhost:8080/api/comments/', commentPayload);
+  postComment(commentPayload: CommentPayload): Observable<string> {
+    return this.httpClient.post('http://localhost:8080/api/comments/', commentPayload, {responseType: 'text'});
   }
 
   getAllCommentsByUser(name: string) {

@@ -1,6 +1,6 @@
 export class PostPayload {
   postName: string;
-  topicName?: string;
+  topicId?: number;
   url?: string;
   description: string;
 }

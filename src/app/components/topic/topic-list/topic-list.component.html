@@ -2,15 +2,63 @@
   <div class="row">
     <hr />
     <div class="col-md-9">
-      <h2>List of Subreddits</h2>
-      <ul>
-        <li *ngFor="let topic of topics">
-          <a routerLink="/view-topic/{{topic.id}}">{{topic.name}}</a>
-        </li>
-      </ul>
+      <h2>List of Topics</h2>
+
+      <p>Pick your topic of interest <code>ngFor</code></p>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Topic</th>
+          <th scope="col">Number of posts</th>
+          <th scope="col">Created</th>
+          <th scope="col">By user</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let topic of topics; index as i">
+          <th scope="row"> * </th>
+          <td>
+            <img [src]="'https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg'" class="mr-2" style="width: 20px">
+            <a routerLink="/view-topic/{{topic.id}}">{{topic.name}}</a>
+          </td>
+          <td>{{ topic.numberOfPosts }}</td>
+          <td>{{ topic.duration }}</td>
+          <td>{{ topic.userName }}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
     <div class="col-md-3">
       <app-sidebar></app-sidebar>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-9" style="padding-left: 30%">
+          <ngb-pagination
+            [collectionSize]="numberOfElementsTotal"
+            [pageSize]="numberOfElementsPerPage"
+            [(page)]="pageNumber"
+            (pageChange)="getAllTopics()"
+            [maxSize]="maxNumberOfPagesVisible"
+            [boundaryLinks]="true"
+          ></ngb-pagination>
+        </div>
+        <div class="col-3 mt-2">
+          <span >Page Size </span>
+          <select (change)="updatePageSize($any($event.target).value)">
+            <option selected="true">2</option>
+            <option>5</option>
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

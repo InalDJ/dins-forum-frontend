@@ -10,15 +10,18 @@ import {TopicService} from "../../services/topic.service";
 export class TopicSidebarComponent implements OnInit {
   topics: Array<TopicModel> = [];
   displayViewAll: boolean;
+  orderType: string = 'NEW'
+  pageNumber: number = 0
+  topicsPerPage: number = 10
 
   constructor(private topicService: TopicService) {
-    this.topicService.getAllTopics().subscribe(data => {
-      if (data.length > 3) {
-        this.topics = data.splice(0, 3);
-        this.displayViewAll = true;
-      } else {
-        this.topics = data;
-      }
+    this.topicService.getAllTopics(this.orderType, this.pageNumber, this.topicsPerPage).subscribe(data => {
+       if (data.topics.length > 3) {
+         this.topics = data.topics.splice(0, 3);
+         this.displayViewAll = true;
+       } else {
+         this.topics = data.topics;
+       }
     });
   }
 

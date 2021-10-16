@@ -7,13 +7,13 @@
     <span style="font-size: small;">{{comment.voteCount}}</span>
       <fa-icon (click)="downvoteComment()" class="downvote mx-1" [icon]="faArrowDown" [style.color]="comment.downVoted ? 'red':''">
       </fa-icon>
-      <a style="font-weight: bold" role="button" (click)="collapse2.toggle()" [attr.aria-expanded]="!isCollapsed2" aria-controls="collapseExample">
+      <a style="font-weight: bold" role="button" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
         <fa-icon class="mx-1" [icon]="faComments" ></fa-icon >
         Reply
       </a>
 
-      <div #collapse2="ngbCollapse" [(ngbCollapse)]="isCollapsed2" class="post-comment">
-        <form>
+      <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" class="post-comment">
+        <form [formGroup]="subCommentForm" (ngSubmit)="postSubComment()">
           <div class="form-group">
             <textarea class="form-control" [formControlName]="'text'" placeholder="Your Thoughts?"></textarea>
           </div>

@@ -14,10 +14,10 @@ import { TopicListComponent } from './components/topic/topic-list/topic-list.com
 import { PostTileComponent } from './components/post/post-tile/post-tile.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TopicSidebarComponent } from './components/topic-sidebar/topic-sidebar.component';
-import { VoteButtonComponent } from './components/vote-button/vote-button.component';
+import { VoteButtonComponent } from './components/vote/vote-button/vote-button.component';
 import {NgxWebstorageModule} from "ngx-webstorage";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ToastrModule} from "ngx-toastr";
@@ -44,18 +44,19 @@ import { CommentVoteButtonComponent } from './components/vote/comment-vote-butto
     VoteButtonComponent,
     CommentVoteButtonComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgxWebstorageModule.forRoot(),
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    FontAwesomeModule,
-    HttpClientModule,
-    ToastrModule.forRoot(),
-    EditorModule,
-    NgbModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgxWebstorageModule.forRoot(),
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        FontAwesomeModule,
+        HttpClientModule,
+        ToastrModule.forRoot(),
+        EditorModule,
+        NgbModule,
+        FormsModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

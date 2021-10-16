@@ -11,21 +11,24 @@
 
           <input type="text" class="form-control" [formControlName]="'url'" style="margin-top: 5px" placeholder="URL">
 
-          <select class="form-control" style="margin-top: 10px" [formControlName]="'subredditName'">
-            <option value="" selected disabled>Select Subreddit</option>
-            <option *ngFor="let topic of topics">{{topic.name}}</option>
+          <select class="form-control" style="margin-top: 10px" [formControlName]="'topicId'">
+            <option disabled>Select Subreddit</option>
+            <option selected="true" *ngFor="let topic of topics" [ngValue]="topic.id">{{topic.name}}</option>
           </select>
 
           <editor [formControlName]="'description'" [init]="{
+                        file_picker_types: 'image',
+                         file_browser_callback: createPostForm,
                         height: 500,
                         menubar: false,
                         plugins: [
-                          'advlist autolink lists link image charmap print preview anchor',
+                          'advlist autolink lists link charmap print preview anchor',
                           'searchreplace visualblocks code fullscreen',
-                          'insertdatetime media table paste code help wordcount'
+                          'insertdatetime media table paste code help wordcount',
+                          'image'
                         ],
                         toolbar:
-                          'undo redo | formatselect | bold italic backcolor | \
+                          'undo redo | formatselect | bold italic backcolor | image | \
                           alignleft aligncenter alignright alignjustify | \
                           bullist numlist outdent indent | removeformat | help'
                       }"></editor>
