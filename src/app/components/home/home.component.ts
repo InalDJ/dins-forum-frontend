@@ -35,7 +35,22 @@ export class HomeComponent implements OnInit {
       this.posts = data.posts;
       this.pageNumber = data.pageNumber + 1
       this.numberOfElementsTotal = data.numberOfElementsTotal
+      this.handlePreviewDescription(this.posts);
+     for (let post of data.posts) {
+       console.log('description ofpost ' + post.postName + '  -  ' + post.description)
+     }
     });
+  }
+
+
+  handlePreviewDescription(posts: PostModel[]) {
+    if (posts != undefined || posts != null) {
+      for (let post of posts) {
+        if (post.files != undefined && post.files.length != 0) {
+          post.description = '<p><img src="' + post.files[0].url + '" alt="" width="169" height="171" /></p>'
+        }
+      }
+    }
   }
 
   changeOrderType(orderType: string) {

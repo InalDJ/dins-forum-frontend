@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
     this.activatedRoute.queryParams
       .subscribe(params => {
-        if (params.registered !== undefined && params.registered === 'true') {
+        if (params.registered !== undefined && params.registered == 'true') {
           this.toastr.success('Signup Successful');
           this.registerSuccessMessage = 'Please Check your inbox for activation email '
             + 'activate your account before you Login!';
@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
       this.toastr.success('Login Successful');
     }, error => {
       this.isError = true;
+      this.toastr.error('Login failed')
       throwError(error);
     });
   }

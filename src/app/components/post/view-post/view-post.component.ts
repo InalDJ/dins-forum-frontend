@@ -9,6 +9,7 @@ import {throwError} from "rxjs";
 import {faCaretDown, faCaretUp} from '@fortawesome/free-solid-svg-icons';
 import {ToastrService} from "ngx-toastr";
 import {CommentResponse} from "../../../model/comment-response";
+import {FilePayload} from "../../../model/file-payload";
 
 @Component({
   selector: 'app-view-post',
@@ -48,7 +49,8 @@ export class ViewPostComponent implements OnInit {
       duration: '',
       upVote: false,
       downVote: false,
-      commentCount: 0
+      commentCount: 0,
+      files: []
     }
     this.commentPayload = {
       id: 0,
@@ -86,7 +88,6 @@ export class ViewPostComponent implements OnInit {
             comment.subCommentsHidden = false
           }
         }
-
       })
   }
 

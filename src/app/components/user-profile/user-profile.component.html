@@ -1,6 +1,109 @@
 <div class="container">
+  <div class="row">
+    <div class="col">
+      <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs justify-content-start">
+        <li [ngbNavItem]="1">
+          <a ngbNavLink (click)="getPostsByUser()">My posts</a>
+          <ng-template ngbNavContent>
+            <div>
+              <div class="col">
+                <h2>List of your posts</h2>
+                <p>Yor posts <code>ngFor</code></p>
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Post</th>
+                    <th scope="col">Vote count</th>
+                    <th scope="col">Number of comments</th>
+                    <th scope="col">Topic</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">By user</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let post of posts; index as i">
+                    <th scope="row"> * </th>
+                    <td style="text-align: left; vertical-align: middle;">
+                      <img [src]="'./assets/Flag_of_Canada.svg'" class="mr-2" style="width: 20px">
+                      <a routerLink="/posts/{{post.id}}">{{post.postName}}</a>
+                    </td>
+                    <td>{{ post.voteCount }}</td>
+                    <td>{{ post.commentCount }}</td>
+                    <td>{{ post.topicName }}</td>
+                    <td>{{ post.duration }}</td>
+                    <td>{{ post.userName }}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+          <a ngbNavLink>My comments</a>
+          <ng-template ngbNavContent>
+
+
+
+
+
+          </ng-template>
+        </li>
+        <li ngbDropdown class="nav-item">
+          <a href (click)="false" class="nav-link" ngbDropdownToggle>Dropdown</a>
+          <div ngbDropdownMenu>
+            <button ngbDropdownItem>Action</button>
+            <button ngbDropdownItem>Another action</button>
+            <button ngbDropdownItem>Something else here</button>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem>Separated link</button>
+          </div>
+        </li>
+        <li ngbNavItem [disabled]="true" class="ml-auto">
+          <a ngbNavLink>Disabled</a>
+          <ng-template ngbNavContent>
+            <div *ngFor="let post of posts">
+              <p>{{post.postName}}</p>
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-9" style="padding-left: 30%">
+    <ngb-pagination
+      [collectionSize]="numberOfElementsTotal"
+      [pageSize]="numberOfElementsPerPage"
+      [(page)]="pageNumber"
+      (pageChange)="getPostsByUser()"
+      [maxSize]="maxNumberOfPagesVisible"
+      [boundaryLinks]="true"
+    ></ngb-pagination>
+  </div>
+  <div class="col-3 mt-2">
+    <span >Page Size </span>
+    <select (change)="updatePageSize($any($event.target).value)">
+      <option selected="true">5</option>
+      <option>10</option>
+      <option>20</option>
+      <option>50</option>
+      <option>100</option>
+    </select>
+  </div>
+
+
+
+<div class="container">
   <div>
-    Welcome <b>{{name}}</b>.<br /> You have posted <b>{{postLength}}</b> time(s) and commented
+    Welcome <b>{{userName}}</b>.<br /> You have posted <b>{{postLength}}</b> time(s) and commented
     <b>{{commentLength}}</b> time(s).
     You can check your post and comment history below.
   </div>
@@ -25,4 +128,5 @@
     </div>
     <hr />
   </div>
+</div>
 </div>

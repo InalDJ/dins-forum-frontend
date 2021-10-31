@@ -27,7 +27,13 @@ export class CommentService {
     return this.httpClient.post('http://localhost:8080/api/comments/', commentPayload, {responseType: 'text'});
   }
 
-  getAllCommentsByUser(name: string) {
-    return this.httpClient.get<CommentPayload[]>('http://localhost:8080/api/comments/by-user/' + name);
+  getAllCommentsByUser(userName: string, pageNumber: number, postsPerPage: number): Observable<CommentResponse> {
+    return this.httpClient.get<CommentResponse>('http://localhost:8080/api/comments/by-user', {
+      params: {
+        userName: userName,
+        pageNumber: pageNumber,
+        postsPerPage: postsPerPage
+      }
+    });
   }
 }

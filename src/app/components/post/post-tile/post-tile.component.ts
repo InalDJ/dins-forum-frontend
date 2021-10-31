@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {PostModel} from "../../../model/post-model";
-import { faComments } from '@fortawesome/free-solid-svg-icons';
+import {faComments} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-post-tile',
@@ -13,7 +13,8 @@ export class PostTileComponent implements OnInit {
   faComments = faComments;
   @Input() posts: PostModel[];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
   }

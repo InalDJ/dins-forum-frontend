@@ -20,7 +20,7 @@
         <tr *ngFor="let topic of topics; index as i">
           <th scope="row"> * </th>
           <td>
-            <img [src]="'https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg'" class="mr-2" style="width: 20px">
+            <img [src]="'./assets/Flag_of_Canada.svg'" class="mr-2" style="width: 20px">
             <a routerLink="/view-topic/{{topic.id}}">{{topic.name}}</a>
           </td>
           <td>{{ topic.numberOfPosts }}</td>

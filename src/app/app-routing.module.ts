@@ -9,6 +9,7 @@ import {LoginComponent} from "./components/auth/login/login.component";
 import {TopicListComponent} from "./components/topic/topic-list/topic-list.component";
 import {CreateTopicComponent} from "./components/topic/create-topic/create-topic.component";
 import {AuthGuard} from "./components/auth/auth-guard";
+import {UpdatePostComponent} from "./components/post/update-post/update-post.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'user-profile/:name', component: UserProfileComponent, canActivate: [AuthGuard] },
   { path: 'list-topics', component: TopicListComponent },
   { path: 'create-post', component: CreatePostComponent, canActivate: [AuthGuard] },
+  { path: 'update-post/:id', component: UpdatePostComponent, canActivate: [AuthGuard] },
   { path: 'create-topic', component: CreateTopicComponent, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignupComponent },
   { path: 'login', component: LoginComponent }

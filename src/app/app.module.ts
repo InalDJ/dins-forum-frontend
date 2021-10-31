@@ -25,6 +25,7 @@ import {TokenInterceptor} from "./token-interceptor";
 import {EditorModule} from "@tinymce/tinymce-angular";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentVoteButtonComponent } from './components/vote/comment-vote-button/comment-vote-button.component';
+import { UpdatePostComponent } from './components/post/update-post/update-post.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CommentVoteButtonComponent } from './components/vote/comment-vote-butto
     SidebarComponent,
     TopicSidebarComponent,
     VoteButtonComponent,
-    CommentVoteButtonComponent
+    CommentVoteButtonComponent,
+    UpdatePostComponent
   ],
     imports: [
         BrowserModule,
