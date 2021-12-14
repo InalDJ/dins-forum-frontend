@@ -75,7 +75,7 @@ export class CommentVoteButtonComponent implements OnInit {
     this.commentService.postComment(this.subCommentPayload).subscribe(data => {
       this.subCommentForm.get('text')!.setValue('');
       this.toastr.success('The comment has been added!')
-      this.commentService.getSubCommentsByPostANdParentComment(this.postId, this.parentCommentId).subscribe(data => {
+      this.commentService.getSubCommentsByPostAndParentComment(this.parentCommentId).subscribe(data => {
         this.subComments = data;
         this.updateSubComments(this.subComments);
       }, error => {

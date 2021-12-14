@@ -66,7 +66,6 @@ export class AuthService {
     this.localStorage.clear('username');
     this.localStorage.clear('authenticationToken');
     this.loggedIn.emit(false);
-
   }
 
   refreshToken() {

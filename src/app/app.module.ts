@@ -26,6 +26,9 @@ import {EditorModule} from "@tinymce/tinymce-angular";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentVoteButtonComponent } from './components/vote/comment-vote-button/comment-vote-button.component';
 import { UpdatePostComponent } from './components/post/update-post/update-post.component';
+import { CommentComponent } from './components/comment/comments/comment.component';
+import {NgxSpinnerModule} from "ngx-spinner";
+import { MyCommentsComponent } from './components/comment/my-comments/my-comments.component';
 
 @NgModule({
   declarations: [
@@ -44,21 +47,24 @@ import { UpdatePostComponent } from './components/post/update-post/update-post.c
     TopicSidebarComponent,
     VoteButtonComponent,
     CommentVoteButtonComponent,
-    UpdatePostComponent
+    UpdatePostComponent,
+    CommentComponent,
+    MyCommentsComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NgxWebstorageModule.forRoot(),
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-        FontAwesomeModule,
-        HttpClientModule,
-        ToastrModule.forRoot(),
-        EditorModule,
-        NgbModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgxWebstorageModule.forRoot(),
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    EditorModule,
+    NgbModule,
+    FormsModule,
+    NgxSpinnerModule
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
